@@ -1,0 +1,213 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Medienwandel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow column of poster-style blocks. Big blue title, an info strip, then the program as a timeline with a proportional 120-minute bar. */
+:root {
+  --bg: #F3F0E8;
+  --panel: #E7EAF1;
+  --fg: #0F2A5C;
+  --muted: #48608C;
+  --blue: #0B4DA8;
+  --orange: #D4470F;
+  --rule: #BFC9DD;
+  --on-orange: #FFFFFF;
+  --display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1A38;
+    --panel: #12274F;
+    --fg: #EDF1FA;
+    --muted: #9DB1D6;
+    --blue: #7DAAF7;
+    --orange: #FF7B3F;
+    --rule: #284483;
+    --on-orange: #1B0B03;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1A38;
+  --panel: #12274F;
+  --fg: #EDF1FA;
+  --muted: #9DB1D6;
+  --blue: #7DAAF7;
+  --orange: #FF7B3F;
+  --rule: #284483;
+  --on-orange: #1B0B03;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  padding-block: 1.5rem 3rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 60rem; margin-inline: auto; display: flex; flex-direction: column; gap: 2.5rem; }
+
+/* Masthead */
+.uni { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--blue); }
+.uni span { font-weight: 600; font-size: 0.95rem; color: var(--blue); }
+.uni .ar { direction: rtl; font-size: 1.1rem; }
+
+h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(3.4rem, 15.5vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--blue);
+  margin: 0;
+}
+.sub {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 4vw, 2.25rem);
+  line-height: 1.15;
+  margin: 0.75rem 0 0;
+  max-width: 28ch;
+  text-wrap: balance;
+}
+
+/* Info strip */
+.info { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.5rem 2rem; align-items: start; }
+.info > div { min-width: 0; border-top: 2px solid var(--blue); padding-top: 0.75rem; }
+.label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.25rem; }
+.big { font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem, 4.5vw, 2.2rem); line-height: 1.1; margin: 0; text-wrap: balance; }
+.tags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 1rem; }
+.free { background: var(--orange); color: var(--on-orange); font-family: var(--display); font-weight: 700; font-size: 1.5rem; line-height: 1; padding: 0.5rem 1.1rem 0.55rem; transform: skewX(-8deg); }
+.free span { display: inline-block; transform: skewX(8deg); }
+.count { font-weight: 600; color: var(--orange); font-size: 1rem; }
+
+/* Program */
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 6vw, 3rem); line-height: 1; text-transform: uppercase; letter-spacing: 0.02em; color: var(--blue); margin: 0 0 1.25rem; }
+
+.bar { display: flex; gap: 2px; height: 0.9rem; }
+.bar i { display: block; background: var(--blue); min-width: 0; }
+.bar i.pause { background: var(--orange); }
+.bar i.talk { background: var(--fg); }
+.ticks { display: grid; grid-template-columns: 1fr 1fr 1fr; margin-top: 0.4rem; font-size: 0.85rem; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ticks span:nth-child(2) { text-align: center; }
+.ticks span:nth-child(3) { text-align: right; }
+
+ol.program { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+.program li {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+  gap: 0 1rem;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--rule);
+}
+.program li:last-child { border-bottom: 1px solid var(--rule); }
+.time { font-family: var(--display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--blue); font-variant-numeric: tabular-nums; }
+.what { font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.15; margin: 0; overflow-wrap: anywhere; }
+.dur { font-size: 0.9rem; font-weight: 500; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.program li.pause { background: var(--panel); border-top-color: var(--orange); }
+.program li.pause .time, .program li.pause .what { color: var(--orange); }
+.program li.pause { padding-inline: 0.75rem; margin-inline: -0.75rem; }
+.program li.talk .what { color: var(--fg); }
+
+footer { font-size: 0.9rem; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1.5rem; border-top: 2px solid var(--blue); padding-top: 0.75rem; }
+
+@media (min-width: 40rem) {
+  .program li { grid-template-columns: 6rem minmax(0, 1fr) auto; padding-block: 1rem; }
+  .time, .what { font-size: 1.85rem; }
+  .dur { font-size: 1rem; }
+}
+</style>
+
+<div class="wrap">
+  <header class="uni">
+    <span>Université Mohammed V de Rabat</span>
+    <span class="ar" lang="ar">جامعة محمد الخامس بالرباط</span>
+  </header>
+
+  <section>
+    <h1>Medienwandel</h1>
+    <p class="sub">Von der Mündlichkeit zu Multimedia und Hypermedia</p>
+  </section>
+
+  <section>
+    <div class="info">
+      <div>
+        <p class="label">Datum</p>
+        <p class="big">Donnerstag, 5. November 2026</p>
+      </div>
+      <div>
+        <p class="label">Zeit</p>
+        <p class="big">10:00–12:00 Uhr</p>
+      </div>
+      <div>
+        <p class="label">Ort</p>
+        <p class="big">Annexe Al Irfane, Gebäude C, Raum C1</p>
+      </div>
+    </div>
+    <div class="tags">
+      <div class="free"><span>Eintritt frei</span></div>
+      <span class="count" id="count" hidden></span>
+    </div>
+  </section>
+
+  <section aria-labelledby="prog">
+    <h2 id="prog">Programm</h2>
+
+    <div aria-hidden="true">
+      <div class="bar">
+        <i style="flex-grow:5" title="Einführung"></i>
+        <i style="flex-grow:15"></i>
+        <i style="flex-grow:15"></i>
+        <i style="flex-grow:15"></i>
+        <i class="pause" style="flex-grow:10"></i>
+        <i style="flex-grow:15"></i>
+        <i style="flex-grow:15"></i>
+        <i style="flex-grow:15"></i>
+        <i class="talk" style="flex-grow:15"></i>
+      </div>
+      <div class="ticks"><span>10:00</span><span>11:00</span><span>12:00</span></div>
+    </div>
+
+    <ol class="program">
+      <li><span class="time">10:00</span><p class="what">Einführung</p><span class="dur">5 Min.</span></li>
+      <li><span class="time">10:05</span><p class="what">Mündlichkeit und Schriftlichkeit</p><span class="dur">15 Min.</span></li>
+      <li><span class="time">10:20</span><p class="what">Text, Buch, Druck</p><span class="dur">15 Min.</span></li>
+      <li><span class="time">10:35</span><p class="what">Zeitung, Zeitschriften, Entstehung von Öffentlichkeit</p><span class="dur">15 Min.</span></li>
+      <li class="pause"><span class="time">10:50</span><p class="what">Kaffeepause</p><span class="dur">10 Min.</span></li>
+      <li><span class="time">11:00</span><p class="what">Radio und Fernsehen</p><span class="dur">15 Min.</span></li>
+      <li><span class="time">11:15</span><p class="what">Digitale Medien</p><span class="dur">15 Min.</span></li>
+      <li><span class="time">11:30</span><p class="what">Multimedia und Hypermedia</p><span class="dur">15 Min.</span></li>
+      <li class="talk"><span class="time">11:45</span><p class="what">Abschlussdiskussion</p><span class="dur">15 Min.</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>Université Mohammed V de Rabat</span>
+    <span>Annexe Al Irfane, Gebäude C, Raum C1</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  try {
+    document.documentElement.lang = "de";
+    var el = document.getElementById("count");
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var days = Math.round((new Date(2026, 10, 5) - today) / 864e5);
+    var msg = days > 1 ? "Noch " + days + " Tage" : days === 1 ? "Morgen" : days === 0 ? "Heute" : "";
+    if (msg) { el.textContent = msg; el.hidden = false; }
+  } catch (e) {}
+})();
+</script>
+
+</body></html>
